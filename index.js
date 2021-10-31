@@ -20,6 +20,7 @@ async function run() {
         const database = client.db("travel-bokking");
         const bookedcollection = database.collection("booked");
         const bookedorder = database.collection("bookedOrder");
+        const Traveloffer = database.collection("traveloffer");
         //GET data for booked API
         app.get('/booked', async (req, res) => {
             const cursor = bookedcollection.find({})
@@ -65,6 +66,17 @@ async function run() {
             console.log('deleteing order', id)
             res.json(result)
         })
+
+        //GET Api for traveloffer data
+
+        app.get('/traveloffer', async (req, res) => {
+            const cursor = Traveloffer.find({})
+            const offer = await cursor.toArray()
+            console.log("get order", offer)
+            res.send(offer)
+
+        })
+
 
 
 
